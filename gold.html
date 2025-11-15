@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Médico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex items-center justify-center">
+
+  <!-- Loading Screen -->
+  <div id="loading" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+    <div class="flex flex-col items-center">
+      <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="mt-4 text-blue-700 font-semibold">Cargando...</p>
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm" class="hidden fade-in">
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+      <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-blue-700">Sistema Médico</h1>
+        <p class="text-gray-500">Inicia sesión para acceder a tus consultas</p>
+      </div>
+      <form class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+          <input type="email" placeholder="ejemplo@correo.com"
+            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <input type="password" placeholder="••••••••"
+            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center text-sm text-gray-600">
+            <input type="checkbox" class="mr-2" /> Recuérdame
+          </label>
+          <a href="#" class="text-sm text-blue-600 hover:underline">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+          Iniciar sesión
+        </button>
+      </form>
+      <p class="mt-6 text-center text-sm text-gray-600">
+        ¿No tienes una cuenta?
+        <a href="#" class="text-blue-600 hover:underline">Regístrate</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Simula un loading de 2 segundos
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        const form = document.getElementById('loginForm');
+        form.classList.remove('hidden');
+        form.classList.add('fade-in');
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
