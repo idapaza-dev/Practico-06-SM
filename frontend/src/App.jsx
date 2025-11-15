@@ -3,6 +3,7 @@ import { useContext, Suspense, lazy } from 'react';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthContext } from './context/AuthContext';
+import "./index.css";
 
 const Login = lazy(() => import('./pages/Login'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
@@ -14,11 +15,11 @@ const Appointments = lazy(() => import('./pages/Appointments'));
 export default function App(){
   const { user } = useContext(AuthContext);
   return (
-    <div>
+    <div className="">
       <NavBar />
       <Suspense fallback={<div>Cargando...</div>}>
         <Routes>
-          <Route path="/" element={ user ? <Navigate to={ user.role === 'admin' ? '/admin' : user.role === 'recepcionista' ? '/recepcion' : '/medico' } /> : <Navigate to="/login" /> } />
+          <Route  path="/" element={ user ? <Navigate class="bg-amber-500" to={ user.role === 'admin' ? '/admin' : user.role === 'recepcionista' ? '/recepcion' : '/medico' } /> : <Navigate to="/login" /> } />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<ProtectedRoute roles={['admin']}><AdminPanel/></ProtectedRoute>} />
           <Route path="/recepcion" element={<ProtectedRoute roles={['recepcionista']}><ReceptionPanel/></ProtectedRoute>} />
